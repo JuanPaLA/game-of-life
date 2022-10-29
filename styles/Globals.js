@@ -31,5 +31,7 @@ export const StyledMain = styled.main`
     display: flex;
     flex-direction: column;    
     align-items: center;
-    
+    max-width: 100vw;
+    overflow: scroll;
+    justify-content: flex-start;
 `;

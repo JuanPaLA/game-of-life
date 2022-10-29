@@ -51,32 +51,30 @@ export const StyledButton = styled.div`
 export const StyledFieldset = styled.fieldset`
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
     border: 1px solid #ccc;
     padding: 1rem;    
     font-size: 1.2rem;
     margin: 0.5rem;
-    width: 90%;
-    max-width: 700px;
-    min-width: 350px;
-    div{
-        margin: 0 0.3rem;
-        ${props => props.type === 'range' && `
-            max-width: 40%;
-            background-color: #F9F7FA;
-        `}
-    }
-    @media ${device.small} {
-        width: 90%;
-        max-width: 90%;
-        font-size: 1.1rem;
-        div{
+    width: 100%;
+    @media ${device.small} {                
+        min-width: 320px;
+        max-width: 100%;        
+        div{            
             input[type="range"]{
-                max-width: 100px;
+                max-width: 90px;
             }
         }
     }
-    
+    @device ${device.medium} {
+        min-width: 400px;
+        max-width: 400px;        
+    }
+    @device ${device.large} {
+        min-width: 500px;
+        max-width: 500px;
+    }
+
 `;
 

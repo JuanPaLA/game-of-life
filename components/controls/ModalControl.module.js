@@ -4,52 +4,64 @@ import { device } from "../../styles/Globals";
 export const StyledModal = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1000;
+    z-index: 1000;    
+    background-color: black;    
+`;
+
+export const StyledModalContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;    
+    max-height: 100vh;
+    z-index: 999;
     border: 1px solid #ccc;
     background-color: black;
-    div{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: black;
-        padding: 1rem;
-        border-radius: 5px;
-        width: 100%;
-        
-        h1{
-            font-size: 2rem;
-            margin: 0 0.5rem;
-        }
-        p{
-            text-align: center;
-            font-size: 2rem;
-            margin: 0 2rem;
-        }
-        span{
-            margin: 1rem;
-            padding: 1rem;
-            border-radius: 5px;
-            font-size: 1.5rem;
-            width: 150px;
-            &:hover{
-                cursor: pointer;
-                background-color: #F9F7FA;
-                color: black;
-            }
+    min-width: 340px;
+    padding: 1rem;
+    position: relative;
+    top: 10%;
 
-            @media ${device.small} {             
-                width: 100%;
-            }
-            
-        }
+    @device ${device.small} {
+        min-width: 350px;
+        max-width: 100vw;                
+    }
+    @device ${device.medium} {
+        min-width: 425px;
+        max-width: 425px;
+        max-height: 80vh;
+    }
+    @device ${device.mediumlarge} {
+        min-width: 768px;
+        max-width: 768px;
+    }
+    @device ${device.large} {
+        min-width: 800px;
+        max-width: 800px;
+    }
+    @device ${device.extralarge} {
+        min-width: 1024px;
+        max-width: 1024px;
+    }
+`;
+
+export const styledHeader = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    h1{
+        
+    }
+    p{
+        
     }
 `;
 
