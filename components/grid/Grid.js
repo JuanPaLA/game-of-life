@@ -1,18 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Cell from '../cell/Cell';
-import { GridContent, StyledGrid, StyledRow, StyledInputs } from './Grid.module';
+import { GridContent, StyledGrid, StyledRow, } from './Grid.module';
 import { Context } from '../../Context';
 
-
-function grid_setter(x_, y_) {
+function grid_setter(x_, y_, random) {
   const INITIAL_STATE = []
   for (let i = 0; i < y_; i++) {
     INITIAL_STATE.push([])
     for (let j = 0; j < x_; j++) {
       var aux = {
         [`${i}-${j}`]: {
-          key_: `${i}-${j}`,
-          alive: Math.floor(Math.random() * 10) % 2 === 0,            
+          key_: `${i}-${j, random}`,
+          alive: random ? Math.floor(Math.random() * 10) % 2 === 0 : false,            
           x: j,
           y: i
         }
@@ -25,58 +24,63 @@ function grid_setter(x_, y_) {
 
 export default function Grid() {
   const context = React.useContext(Context);
-  const { flag, count, setCount, setFlag } = context;
+  const { 
+    flag,
+    setFlag,
+    count,
+    setCount,
+    _x,    
+    _y,
+    delay,
+    startrandom,
+  } = context;
   const [grid, setGrid] = useState(null);
   const [flag_, setFlag_] = useState(false);
-  const [_x, setX] = useState(10);
-  const [_y, setY] = useState(16);
-  const [delay, setDelay] = useState(1000);
 
   const handleGridState = (y, x, alive) => {
-    const newGrid = [...grid]
+    const newGrid = [...grid];
     newGrid[y][x][`${y}-${x}`].alive = alive;
-    setGrid(newGrid)
+    setGrid(newGrid);
   }
 
   const getAliveNeighbors = (y, x) => {
-    const neighbors = []
-    const newGrid = [...grid]
-    let top
-    let bottom;
-    let left;
-    let right;
-    y === 0 ? top = _y - 1 : top = y - 1;
-    y === _y - 1 ? bottom = 0 : bottom = y + 1;
-    x === 0 ? left = _x - 1 : left = x - 1;
-    x === _x - 1 ? right = 0 : right = x + 1;
-    const top_left = [top, left]
-    const top_right = [top, right]
-    const bottom_left = [bottom, left]
-    const bottom_right = [bottom, right]
-    const top_row = [top, x]
-    const bottom_row = [bottom, x]
-    const left_col = [y, left]
-    const right_col = [y, right]
-    const neighbors_coords = [top_left, top_right, bottom_left, bottom_right, top_row, bottom_row, left_col, right_col]
-    neighbors_coords.forEach(coord => {
-      const [y, x] = coord
-      neighbors.push(newGrid[y][x][`${y}-${x}`])
-    })
-    //count alive and not alive neighbors
-    let alive_neighbors = 0
-    neighbors.forEach(neighbor => {
-      if (neighbor.alive) {
-        alive_neighbors += 1
-      }
-    })
-
-    const current_cell = newGrid[y][x][`${y}-${x}`]
-
-    console.log(alive_neighbors, applyRules(alive_neighbors, current_cell.alive));
-    return alive_neighbors;
+    try{
+      const neighbors = []
+      const newGrid = [...grid]
+      let top
+      let bottom;
+      let left;
+      let right;
+      y === 0 ? top = _y - 1 : top = y - 1;
+      y === _y - 1 ? bottom = 0 : bottom = y + 1;
+      x === 0 ? left = _x - 1 : left = x - 1;
+      x === _x - 1 ? right = 0 : right = x + 1;
+      const top_left = [top, left]
+      const top_right = [top, right]
+      const bottom_left = [bottom, left]
+      const bottom_right = [bottom, right]
+      const top_row = [top, x]
+      const bottom_row = [bottom, x]
+      const left_col = [y, left]
+      const right_col = [y, right]
+      const neighbors_coords = [top_left, top_right, bottom_left, bottom_right, top_row, bottom_row, left_col, right_col]
+      neighbors_coords.forEach(coord => {
+        const [y, x] = coord
+        neighbors.push(newGrid[y][x][`${y}-${x}`])
+      })    
+      let alive_neighbors = 0
+      neighbors.forEach(neighbor => {
+        if (neighbor.alive) {
+          alive_neighbors += 1
+        }
+      })    
+      return alive_neighbors;
+    }catch(e){
+      console.log(e)
+    }
   }
 
-  const handleNextState = () => {
+  const handleNextState = () => {    
     let aux = grid.map((row, y) => {
       return row.map((cell, x) => {
         return {
@@ -87,7 +91,7 @@ export default function Grid() {
         }
       })
     })
-    setGrid(aux)
+    if(flag) {setGrid(aux);}
   }
 
   const applyRules = (alives, alive) => {
@@ -108,28 +112,24 @@ export default function Grid() {
     }
   }
 
-  function handleDelayChange(e) {
-    setDelay(Number(e.target.value));
-  }
-
   useEffect(() => {
     if (!flag_) {
-      setGrid(grid_setter(_x, _y));
+      setGrid(grid_setter(_x, _y, startrandom));
       setFlag_(true)
     }
   }, [])
 
-  useEffect(() => {
-    // if (!flag_) {
+  useEffect(() => {    
       setFlag(false)
-      setGrid(grid_setter(_x, _y));
-      setFlag(true)
-    // }
-  }, [_x, _y])
+      setGrid(grid_setter(_x, _y, startrandom));
+      // setFlag(true)
+  }, [_x, _y, startrandom])
 
   useInterval(() => {
-    flag && handleNextState() 
-    flag && setCount(count + 1)
+    if(flag){  
+      handleNextState() ;
+      setCount(count + 1);
+    }    
   }, delay)
 
 
@@ -149,30 +149,15 @@ export default function Grid() {
             </StyledRow>
           ))
         }
-      </StyledGrid>
-      <StyledInputs>
-        <fieldset>
-          <legend>Set the delay</legend>
-          <div>            
-            <input type="range" min="0" max="20000" value={delay} onChange={handleDelayChange} /><p>{delay} ms</p>
-          </div>
-        </fieldset>        
-      </StyledInputs>
-      <StyledInputs>
-        <fieldset>
-          <legend>Set the AXIS</legend>
-          <div>
-            
-          <p>y: {_y}</p><input type="range" min="5" max="25" value={_y} onChange={(e)=>{setY(e.target.value)}} />          
-          <p>x: {_x}</p><input type="range" min="10" max="100" value={_x} onChange={(e)=>{setX(e.target.value)}} />
-          </div>
-        </fieldset>
-      </StyledInputs>
+      </StyledGrid>            
     </GridContent>
   )
 }
 
 function useInterval(callback, delay) {
+  const context = React.useContext(Context);
+  const { flag } = context;
+
   const savedCallback = useRef();
   // Remember the latest function.
   useEffect(() => {

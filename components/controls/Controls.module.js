@@ -6,7 +6,6 @@ export const StyledBar = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    // border: 1px solid #ccc;    
     margin-bottom: 1rem;
     padding: 1rem;
     width: 100%;
@@ -17,16 +16,14 @@ export const StyledBar = styled.div`
 `;
 
 export const StyledButton = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;    
-    padding: 1.5rem 1.5rem;
-    margin: 0 1rem;
-    width: 30%;
-    max-width: 250px;
-    height: 80%;    
+    display: grid;    
+    place-items: center;
+    border: 1px solid #ccc;        
+    margin: 0 0.3rem;
+    width: 17%;
+    max-width: 170px;
+    height: 100%; 
+    min-height: 40px;   
     font-size: 1.5rem;
 
     ${props => props.active && `
@@ -36,12 +33,50 @@ export const StyledButton = styled.div`
         border-shadow: 0 0 10px grey;
     `}
 
+    ${props => props.options && `
+        background-color: #edf257;
+        border: 2px solid grey;
+        color: black;        
+        border-shadow: 0 0 10px grey;
+        border-radius: 5px;
+    `}
+
     &:hover{
         cursor: pointer;
         background-color: #F9F7FA;
         color: black;
     }
+`;
 
-    //if active prop is true, then change background color
+export const StyledFieldset = styled.fieldset`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 1rem;    
+    font-size: 1.2rem;
+    margin: 0.5rem;
+    width: 90%;
+    max-width: 700px;
+    min-width: 350px;
+    div{
+        margin: 0 0.3rem;
+        ${props => props.type === 'range' && `
+            max-width: 40%;
+            background-color: #F9F7FA;
+        `}
+    }
+    @media ${device.small} {
+        width: 90%;
+        max-width: 90%;
+        font-size: 1.1rem;
+        div{
+            input[type="range"]{
+                max-width: 100px;
+            }
+        }
+    }
     
 `;
+
