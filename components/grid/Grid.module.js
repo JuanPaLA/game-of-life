@@ -6,10 +6,11 @@ export const GridContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 `;
 
 export const StyledGrid = styled.div`
-    // border: 1px solid #ccc;
+    
 `;
 
 export const StyledRow = styled.div`
