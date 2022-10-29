@@ -20,14 +20,16 @@ export default function ControlBar() {
                 setFlag(true)
                 setStatus(1)
             }}
+            active={status === 1 && flag ? true : false}
         >
             Start
         </StyledButton>
         <StyledButton
             onClick={() => {
                 setFlag(false)
-                setStatus(0)
+                setStatus(0)                
             }}
+            active={status === 0 && !flag ? true : false}
         >
             Stop
         </StyledButton>
@@ -36,6 +38,7 @@ export default function ControlBar() {
                 setFlag(false)
                 setStatus(-1)
             }}
+            active={status === -1 && !flag ? true : false}
         >
             Clear
         </StyledButton>
