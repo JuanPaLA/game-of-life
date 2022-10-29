@@ -10,8 +10,7 @@ export default function Cell({cell, handler}) {
         onClick={() => {
             handler(y, x, !alive)
         }}
-    >
-    
+    >    
     </StyledCell>
   )
 }
