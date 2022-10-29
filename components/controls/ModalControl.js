@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { StyledModal, StyledModalContent,styledHeader, StyledButtons } from './ModalControl.module';
 import { Context } from '../../Context';
 import BottomControls from './BottomControls';
+import { VscGithub } from 'react-icons/vsc';
 
 export default function ModalControl() {
     const context = React.useContext(Context);
@@ -34,6 +35,7 @@ export default function ModalControl() {
                         <span onClick={() => setShow(false)}>Close</span>
                     </StyledButtons> 
 
+                <a href="https://www.github.com/JuanPaLA/game-of-life"><VscGithub size={28}/></a>
                 </StyledModalContent>                
             </StyledModal>
         )
