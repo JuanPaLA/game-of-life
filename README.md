@@ -1,4 +1,4 @@
-#GAME OF LIFE
+# GAME OF LIFE
 
 ## Motivations
 A few days ago I searched for some react challenges in order to stay sharp, and I found a very interesting one: recreate Game of Life in a web app. 
