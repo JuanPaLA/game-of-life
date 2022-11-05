@@ -10,13 +10,20 @@ export default function ModalControl() {
         show,
         setShow,
         setStatus,
-        setFlag
+        setFlag,
+        startrandom,
     } = context;
 
     const handleStart = () => {
-        setFlag(true)
-        setStatus(1)
-        setShow(false)
+        if(startrandom){
+            setFlag(true)
+            setStatus(1)
+            setShow(false)
+        }else{
+            setFlag(false)
+            setStatus(1)
+            setShow(false)
+        }
     }
 
     if (show) {

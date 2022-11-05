@@ -14,9 +14,9 @@ export const ContextProvider = ({children}) => {
     const [ show, setShow] = React.useState(true);
 
     React.useEffect(() => {
-        // if(!startrandom){
-        //     setFlag(false)
-        // }
+        if(!startrandom){
+            setFlag(false)
+        }
     }, [startrandom])
 
     React.useEffect(() => {        
