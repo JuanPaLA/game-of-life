@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledBar, StyledButton } from './Controls.module';
+import { FixedBar, StyledBar, StyledButton } from './Controls.module';
 import { Context } from '../../Context';
 import { VscStopCircle, VscDebugRestart, VscDebugStart } from 'react-icons/vsc';
 import { CgOptions } from 'react-icons/cg';
@@ -14,7 +14,7 @@ export default function ControlBar() {
     }, [status])
 
     return (
-        <>
+        <FixedBar>
             <StyledBar>
                 <StyledButton
                     active={status === 1 && flag ? true : false}
@@ -56,6 +56,6 @@ export default function ControlBar() {
                     />
                 </StyledButton>
             </StyledBar>
-        </>
+        </FixedBar>
     )
 }

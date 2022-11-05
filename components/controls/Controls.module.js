@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import { device } from "../../styles/Globals";
 
+export const FixedBar = styled.div`
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: black;
+`;
+
 export const StyledBar = styled.div`
     display: flex;
     flex-direction: row;
@@ -9,7 +16,6 @@ export const StyledBar = styled.div`
     margin-bottom: 1rem;
     padding: 1rem;
     width: 100%;
-    height: 8vh;
     @media ${device.small} {
         height: 8vh;
     }

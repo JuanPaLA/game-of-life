@@ -7,6 +7,7 @@ export const GridContent = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 10vh
 `;
 
 export const StyledGrid = styled.div`
