@@ -19,4 +19,15 @@ It took me a few hours over 3 days to finally finish it. Along the way I underst
 
 I used Next JS and Styled Component. I can't believe how easy and powerful this library is to build reusable components! 
 
-You can take a look <a href="https://game-of-life-one-virid.vercel.app/">here</a>!.
+You can take a look <a href="https://game-of-life-one-virid.vercel.app/">here</a>!
+
+## Instructions
+1. In the controls modals (first thing to see when accessing the app) you are going to be able to set the initial paramaters:
+- x and y axis, to indicate their extension.
+- delay, to compute the cycle grid regenation time
+- random or empty start. If empty, you can assign living cells by clicking on them. If random, a random distribution will be generated for you.
+<img src="controls.png"/>
+2. game view:
+- at the top you will have button to stop, resume and access settings.
+<img src="view.png"/>
+
