@@ -13,8 +13,10 @@ In terms of react, this is a very good exercise because it requires to handle th
 
 ## Summing my experience
 It took me a few hours over 3 days to finally finish it. Along the way I understood, once again:
-- The importance of don't duplicate state in childrens. Just send them the props they need. In this case, from the grid to the cell.
+- The importance of don't duplicate state in children. Just send them the props they need. In this case, from the grid to the cell.
 - The special care you need to use setInterval within useEffects, and the "async" nature of useState. 
 - Use propper methods to mutate your state based on arrays[objects] (like array.map() and spread operator). 
 
 I used Next JS and Styled Component. I can't believe how easy and powerful this library is to build reusable components! 
+
+You can take a look <a href="https://game-of-life-one-virid.vercel.app/">here</a>!.
